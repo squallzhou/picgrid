@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="title_bar_height">41dp</dimen>
+    <dimen name="title_lefticon_width">42dp</dimen>
+    <dimen name="title_bar_default_margin">8dp</dimen>
+    <dimen name="title_bar_img_margin_outside">12dp</dimen>
+    <dimen name="txt_title_bar_theme">16sp</dimen>
+    <dimen name="txt_title_bar_right">15sp</dimen>
+</resources>
