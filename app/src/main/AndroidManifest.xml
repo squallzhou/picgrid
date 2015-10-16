@@ -25,6 +25,11 @@
         </activity>
 
         <activity
+            android:name=".activitys.PicGridViewCropActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
             android:name=".activitys.PicGridViewMultiSelectActivity"
             android:screenOrientation="portrait">
         </activity>

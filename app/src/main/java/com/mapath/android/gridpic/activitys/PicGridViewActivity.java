@@ -369,4 +369,13 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
         startActivity(intent);
     }
 
+    protected boolean checkSDCard() {
+        if (android.os.Environment.getExternalStorageState().equals(
+                android.os.Environment.MEDIA_MOUNTED)) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

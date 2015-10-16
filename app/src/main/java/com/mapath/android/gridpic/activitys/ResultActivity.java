@@ -31,12 +31,12 @@ public class ResultActivity extends Activity {
 
         String path = getIntent().getStringExtra(PicGridViewActivity.RESULT_KEY);
         if(path == null){
-            String[] paths = getIntent().getStringArrayExtra(PicGridViewActivity.RESULT_KEY);
+            String[] paths = getIntent().getStringArrayExtra(PicGridViewActivity.RESULT_KEY);  //多选
             for(String p :paths){
                 pathList.add(p);
             }
         }else{
-            pathList.add(path);
+            pathList.add(path);         //单选
         }
 
         if(pathList == null || pathList.size() == 0){
