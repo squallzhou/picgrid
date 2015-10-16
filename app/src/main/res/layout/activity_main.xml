@@ -3,15 +3,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:src="@drawable/icon_mapath"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="25dp"
         android:textColor="#000000"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:text="图片选择器"/>
 
     <TextView
@@ -30,7 +37,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="20sp">
+        android:textSize="25sp">
     </ListView>
 
     <ImageView
