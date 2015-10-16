@@ -36,6 +36,10 @@ public class PicGridViewAdapter extends CommonAdapter<String> {
         param.height = (((PicGridViewActivity) context).getmScreenWidth() - 2) / 3;
         mImageView.setLayoutParams(param);
 
+        setImage(helper,item,position);
+    }
+
+    protected void setImage(final ViewHolder helper,final String item,final int position){
         //设置图片
         helper.setImageResource(R.id.id_item_image, R.drawable.pictures_no); // 设置no_pic
         helper.setImageByUrl(R.id.id_item_image, mDirPath + "/" + item);// 设置图片

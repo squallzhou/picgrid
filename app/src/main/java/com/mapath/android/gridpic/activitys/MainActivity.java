@@ -49,6 +49,10 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 intent = new Intent(this,PicGridViewCropActivity.class);
                 startActivityForResult(intent,RESULT_CROP_REQUEST);
                 break;
+            case 2:
+                intent = new Intent(this,PicGridViewWithCameraActivity.class);
+                startActivity(intent);
+                break;
             case 4:
                 intent = new Intent(this,PicGridViewMultiSelectActivity.class);
                 startActivity(intent);
