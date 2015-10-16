@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.utils.ViewHolder;
@@ -30,7 +31,7 @@ public class PicGridViewMultiSelectAdapter extends PicGridViewAdapter {
 
     @Override
     public void convert(ViewHolder helper, final String item, final int position) {
-        super.convert(helper,item, position);
+        super.convert(helper, item, position);
 
         final ImageView mImageView = helper.getView(R.id.id_item_image);
         final ImageView mSelect = helper.getView(R.id.id_item_select);
@@ -54,15 +55,30 @@ public class PicGridViewMultiSelectAdapter extends PicGridViewAdapter {
         return mSelectedImage.contains(path);
     }
 
-    public void removeSelected(String path, ImageButton mSelected, ImageView mImageView) {
+    public void removeSelected(String path, ImageButton mSelected, ImageView mImageView, TextView titleRight) {
         mSelectedImage.remove(path);
         mSelected.setImageResource(R.drawable.picture_unselected);
         mImageView.setColorFilter(null);
+
+        handTitleRight(titleRight);
+
     }
 
-    public void addSelected(String path, ImageButton mSelected, ImageView mImageView) {
+    public void addSelected(String path, ImageButton mSelected, ImageView mImageView, TextView titleRight) {
         mSelectedImage.add(path);
         mSelected.setImageResource(R.drawable.pictures_selected);
         mImageView.setColorFilter(Color.parseColor("#77000000"));
+
+        handTitleRight(titleRight);
+    }
+
+    private void handTitleRight(TextView titleRight){
+        if(mSelectedImage.size()!=0){
+            titleRight.setVisibility(View.VISIBLE);
+            titleRight.setText("");
+            titleRight.setText("确定" + "(" + mSelectedImage.size() + ")");
+        }else{
+            titleRight.setVisibility(View.GONE);
+        }
     }
 }

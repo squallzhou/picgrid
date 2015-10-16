@@ -24,9 +24,16 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".activitys.PicGridViewMultiSelectActivity"
+        <activity
+            android:name=".activitys.PicGridViewMultiSelectActivity"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".activitys.ResultActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

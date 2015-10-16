@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewAdapter;
+import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
 import com.mapath.android.gridpic.models.ImageFolder;
 import com.mapath.android.gridpic.views.ListImageDirPopupWindowView;
 
@@ -43,6 +45,8 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
 
     private static final String TAG = "PicGridViewActivity";
 
+    public static final String RESULT_KEY = "keepResultPath";
+
     //用来记录手机里，选中的文件夹的位置
     private static final String DEFAULT_PATH = "picselectpath";
 
@@ -54,6 +58,8 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
     private TextView mChooseDir;
     private TextView mImageCount;
     private RelativeLayout mBottomLy;
+
+    protected TextView titleRight;
 
     private ListImageDirPopupWindowView mListImageDirPopupWindowView;
 
@@ -125,7 +131,7 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
         initEvent();
     }
 
-    private void initView() {
+    protected void initView() {
         mGirdView = (GridView) findViewById(R.id.id_gridView);
         mGirdView.setOnItemClickListener(this);
 
@@ -133,6 +139,13 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
         mImageCount = (TextView) findViewById(R.id.id_total_count);
 
         mBottomLy = (RelativeLayout) findViewById(R.id.id_bottom_ly);
+
+        findViewById(R.id.iv_title_left).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PicGridViewActivity.this.finish();
+            }
+        });
     }
 
     private void initEvent() {
@@ -347,7 +360,13 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        PicGridViewAdapter picGridViewAdapter = (PicGridViewAdapter)parent.getAdapter();
+        String item = picGridViewAdapter.getItem(position);
+        String path = mImgDir.getAbsolutePath() + "/" + item;
+        Intent intent = new Intent(PicGridViewActivity.this,ResultActivity.class);
+        intent.putExtra(RESULT_KEY,path);
 
+        startActivity(intent);
     }
 
 }

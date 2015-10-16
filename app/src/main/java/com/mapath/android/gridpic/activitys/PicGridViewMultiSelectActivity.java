@@ -1,15 +1,21 @@
 package com.mapath.android.gridpic.activitys;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
 import com.mapath.android.gridpic.models.ImageFolder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,8 +24,24 @@ import java.util.List;
 public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
 
     @Override
-    public void selected(ImageFolder floder) {
-        super.selected(floder);
+    protected void initView() {
+        super.initView();
+        titleRight = (TextView)findViewById(R.id.tv_title_right);
+        titleRight.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                List<String> paths = ((PicGridViewMultiSelectAdapter)mAdapter).mSelectedImage;
+                if(paths!=null && paths.size()>0){
+                    Intent intent = new Intent(PicGridViewMultiSelectActivity.this,ResultActivity.class);
+
+                    String[] pathArr = new String[paths.size()];
+                    intent.putExtra(RESULT_KEY, paths.toArray(pathArr));
+
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override
@@ -32,9 +54,9 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
         ImageView mImg = (ImageView)view.findViewById(R.id.id_item_image);
 
         if(picGridViewAdapter.isContains(path)){
-            picGridViewAdapter.removeSelected(path, mSelected, mImg);
+            picGridViewAdapter.removeSelected(path, mSelected, mImg, titleRight);
         } else {
-            picGridViewAdapter.addSelected(path, mSelected, mImg);
+            picGridViewAdapter.addSelected(path, mSelected, mImg, titleRight);
         }
     }
 
