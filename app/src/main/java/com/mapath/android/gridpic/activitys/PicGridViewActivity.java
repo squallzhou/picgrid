@@ -1,4 +1,4 @@
-package com.mapath.android.gridpic;
+package com.mapath.android.gridpic.activitys;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,12 +19,12 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewAdapter;
 import com.mapath.android.gridpic.models.ImageFolder;
 import com.mapath.android.gridpic.views.ListImageDirPopupWindowView;
@@ -58,7 +58,7 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
     private ListImageDirPopupWindowView mListImageDirPopupWindowView;
 
     //选中的图片文件夹，默认是图片数量最多的文件夹
-    private File mImgDir;
+    protected File mImgDir;
 
     //临时的辅助类，用于防止同一个文件夹的多次扫描
     private HashSet<String> mDirPaths = new HashSet<String>();
@@ -71,7 +71,7 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
 
     private List<String> mImgs;
 
-    private PicGridViewAdapter mAdapter;
+    protected PicGridViewAdapter mAdapter;
 
     //文件类型选择器
     private FilenameFilter picFilter = new FilenameFilter(){
@@ -97,20 +97,17 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
         /**
          * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
          */
-        mAdapter = new PicGridViewAdapter(this,
-                mImgs,
-                R.layout.item_picgrid,
-                mImgDir.getAbsolutePath());
-
-        if(mAdapter.mSelectedImage!=null){
-            mAdapter.mSelectedImage.clear();
-        }
+        initPicGridViewAdapter(this, mImgs, R.layout.item_picgrid, mImgDir.getAbsolutePath());
 
         mGirdView.setAdapter(mAdapter);
         mImageCount.setText(floder.getCount() + "张");
 
         mChooseDir.setText(floder.getName());
         mListImageDirPopupWindowView.dismiss();
+    }
+
+    protected void initPicGridViewAdapter(Activity content, List<String> mImgs, int layoutId, String imgDirPath){
+        mAdapter = new PicGridViewAdapter(content, mImgs, layoutId, imgDirPath);
     }
 
     @Override
@@ -198,12 +195,11 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
 
         mImgs = listImgPath();
 
-        mAdapter = new PicGridViewAdapter(this, mImgs, R.layout.item_picgrid, mImgDir.getAbsolutePath());
+        initPicGridViewAdapter(this, mImgs, R.layout.item_picgrid, mImgDir.getAbsolutePath());
         mGirdView.setAdapter(mAdapter);
 
         mImageCount.setText(totalCount + "张");
     };
-
 
     private void getImages() {
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -351,16 +347,7 @@ public class PicGridViewActivity extends Activity implements ListImageDirPopupWi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        PicGridViewAdapter picGridViewAdapter = (PicGridViewAdapter)parent.getAdapter();
-        String item = picGridViewAdapter.getItem(position);
-        String path = mImgDir.getAbsolutePath() + "/" + item;
 
-        ImageButton mSelected = (ImageButton)view.findViewById(R.id.id_item_select);
-        if(picGridViewAdapter.isContains(path)){
-            picGridViewAdapter.removeSelected(path, mSelected);
-        } else {
-            picGridViewAdapter.addSelected(path, mSelected);
-        }
     }
 
 }

@@ -49,10 +49,11 @@
                 android:paddingRight="@dimen/title_bar_img_margin_outside"
                 android:gravity="center_vertical"
                 android:singleLine="true"
-                android:text=""
+                android:text="确定"
                 android:drawablePadding="@dimen/title_bar_default_margin"
                 android:textColor="@drawable/txt_title_right"
                 android:textSize="@dimen/txt_title_bar_right"
+                android:visibility="gone"
                 android:background="@drawable/bg_titlebar_action" />
         </FrameLayout>
 
