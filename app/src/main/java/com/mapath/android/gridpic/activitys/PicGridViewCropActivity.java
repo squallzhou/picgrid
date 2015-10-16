@@ -3,15 +3,12 @@ package com.mapath.android.gridpic.activitys;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.mapath.android.gridpic.adapters.PicGridViewAdapter;
 
 import java.io.File;
-import java.util.Date;
 
 /**
  * Created by zhouxiaobo on 15/10/16.

@@ -16,7 +16,6 @@ import com.mapath.android.gridpic.adapters.CommonAdapter;
 import com.mapath.android.gridpic.utils.ViewHolder;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by zhouxiaobo on 15/10/16.
