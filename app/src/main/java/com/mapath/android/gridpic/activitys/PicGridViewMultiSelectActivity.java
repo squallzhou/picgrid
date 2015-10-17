@@ -2,7 +2,6 @@ package com.mapath.android.gridpic.activitys;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -12,11 +11,7 @@ import android.widget.Toast;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
-import com.mapath.android.gridpic.models.ImageFolder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 /**

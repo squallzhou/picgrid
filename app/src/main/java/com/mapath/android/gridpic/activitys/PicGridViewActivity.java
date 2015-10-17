@@ -27,7 +27,6 @@ import android.widget.Toast;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewAdapter;
-import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
 import com.mapath.android.gridpic.models.ImageFolder;
 import com.mapath.android.gridpic.views.ListImageDirPopupWindowView;
 

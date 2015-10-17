@@ -9,9 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
 import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectWithCameraAdapter;
-import com.mapath.android.gridpic.adapters.PicGridViewWithCameraAdapter;
 
 import java.io.File;
 import java.util.Date;
