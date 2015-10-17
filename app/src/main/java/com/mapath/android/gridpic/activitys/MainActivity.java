@@ -47,11 +47,15 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                 break;
             case 1:
                 intent = new Intent(this,PicGridViewCropActivity.class);
-                startActivityForResult(intent,RESULT_CROP_REQUEST);
+                startActivityForResult(intent, RESULT_CROP_REQUEST);
                 break;
             case 2:
                 intent = new Intent(this,PicGridViewWithCameraActivity.class);
                 startActivity(intent);
+                break;
+            case 3:
+                intent = new Intent(this,PicGridViewCropWithCameraActivity.class);
+                startActivityForResult(intent, RESULT_CROP_REQUEST);
                 break;
             case 4:
                 intent = new Intent(this,PicGridViewMultiSelectActivity.class);
@@ -72,7 +76,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         cropImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,PicGridViewCropActivity.class);
+                Intent intent = new Intent(MainActivity.this,PicGridViewCropWithCameraActivity.class);
                 startActivityForResult(intent,RESULT_CROP_REQUEST);
             }
         });

@@ -15,7 +15,7 @@ import java.io.File;
  */
 public class PicGridViewCropActivity extends PicGridViewActivity {
 
-    private static final int RESULT_REQUEST_CODE = 2;
+    protected static final int RESULT_REQUEST_CODE = 2;
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -25,7 +25,7 @@ public class PicGridViewCropActivity extends PicGridViewActivity {
         startPhotoZoom(Uri.fromFile(new File(path)),PicGridViewCropActivity.RESULT_REQUEST_CODE);
     }
 
-    private void startPhotoZoom(Uri uri, int requestCode) {
+    protected void startPhotoZoom(Uri uri, int requestCode) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
 
