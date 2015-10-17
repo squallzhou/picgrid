@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
@@ -22,6 +23,8 @@ import java.util.List;
  * Created by zhouxiaobo on 15/10/16.
  */
 public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
+
+    private static final int MAX_SELECT_NUMBER = 10;
 
     @Override
     protected void initView() {
@@ -47,6 +50,7 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         PicGridViewMultiSelectAdapter picGridViewAdapter = (PicGridViewMultiSelectAdapter)parent.getAdapter();
+
         String item = picGridViewAdapter.getItem(position);
         String path = mImgDir.getAbsolutePath() + "/" + item;
 
@@ -56,7 +60,12 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
         if(picGridViewAdapter.isContains(path)){
             picGridViewAdapter.removeSelected(path, mSelected, mImg, titleRight);
         } else {
-            picGridViewAdapter.addSelected(path, mSelected, mImg, titleRight);
+            if(picGridViewAdapter.mSelectedImage != null && picGridViewAdapter.mSelectedImage.size() >= MAX_SELECT_NUMBER){
+                Toast.makeText(PicGridViewMultiSelectActivity.this,"最多选择" + MAX_SELECT_NUMBER + "张图片。",Toast.LENGTH_SHORT).show();
+                return;
+            }else{
+                picGridViewAdapter.addSelected(path, mSelected, mImg, titleRight);
+            }
         }
     }
 
