@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.mapath.android.gridpic.R;
 import com.mapath.android.gridpic.adapters.PicGridViewMultiSelectAdapter;
+import com.mapath.android.gridpic.models.ImageFolder;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -76,5 +78,10 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
         }
     }
 
+    @Override
+    public void selected(ImageFolder floder) {
+        super.selected(floder);
+        titleRight.setVisibility(View.GONE);
+    }
 
 }

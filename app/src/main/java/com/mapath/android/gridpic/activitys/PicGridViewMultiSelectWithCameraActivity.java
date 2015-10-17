@@ -27,6 +27,10 @@ public class PicGridViewMultiSelectWithCameraActivity extends PicGridViewMultiSe
     protected void initPicGridViewAdapter(Activity content, List<String> mImgs, int layoutId, String imgDirPath){
         mAdapter = new PicGridViewMultiSelectWithCameraAdapter(content, mImgs, layoutId, imgDirPath);
         paths = ((PicGridViewMultiSelectWithCameraAdapter)mAdapter).mSelectedImage;
+
+        if(paths != null){
+            paths.clear();
+        }
     }
 
     @Override
