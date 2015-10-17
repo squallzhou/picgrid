@@ -24,7 +24,10 @@ import java.util.List;
  */
 public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
 
-    private static final int MAX_SELECT_NUMBER = 10;
+    public static final String RESULT_ARR_KEY = "keepResultArrPath";
+
+    protected static final int MAX_SELECT_NUMBER = 10;
+    protected List<String> paths; //选中的图片的地址集合
 
     @Override
     protected void initView() {
@@ -34,12 +37,11 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
 
             @Override
             public void onClick(View v) {
-                List<String> paths = ((PicGridViewMultiSelectAdapter)mAdapter).mSelectedImage;
                 if(paths!=null && paths.size()>0){
                     Intent intent = new Intent(PicGridViewMultiSelectActivity.this,ResultActivity.class);
 
                     String[] pathArr = new String[paths.size()];
-                    intent.putExtra(RESULT_KEY, paths.toArray(pathArr));
+                    intent.putExtra(RESULT_ARR_KEY, paths.toArray(pathArr));
 
                     startActivity(intent);
                 }
@@ -60,7 +62,7 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
         if(picGridViewAdapter.isContains(path)){
             picGridViewAdapter.removeSelected(path, mSelected, mImg, titleRight);
         } else {
-            if(picGridViewAdapter.mSelectedImage != null && picGridViewAdapter.mSelectedImage.size() >= MAX_SELECT_NUMBER){
+            if(paths != null && paths.size() >= MAX_SELECT_NUMBER){
                 Toast.makeText(PicGridViewMultiSelectActivity.this,"最多选择" + MAX_SELECT_NUMBER + "张图片。",Toast.LENGTH_SHORT).show();
                 return;
             }else{
@@ -72,9 +74,10 @@ public class PicGridViewMultiSelectActivity extends PicGridViewActivity {
     @Override
     protected void initPicGridViewAdapter(Activity content, List<String> mImgs, int layoutId, String imgDirPath){
         mAdapter = new PicGridViewMultiSelectAdapter(content, mImgs, layoutId, imgDirPath);
+        paths = ((PicGridViewMultiSelectAdapter)mAdapter).mSelectedImage;
 
-        if(((PicGridViewMultiSelectAdapter)mAdapter).mSelectedImage!=null){
-            ((PicGridViewMultiSelectAdapter)mAdapter).mSelectedImage.clear();
+        if(paths != null){
+            paths.clear();
         }
     }
 

@@ -29,14 +29,16 @@ public class ResultActivity extends Activity {
 
         listView = (ListView)findViewById(R.id.item_resultSelect);
 
-        String path = getIntent().getStringExtra(PicGridViewActivity.RESULT_KEY);
-        if(path == null){
-            String[] paths = getIntent().getStringArrayExtra(PicGridViewActivity.RESULT_KEY);  //多选
+        String path = getIntent().getStringExtra(PicGridViewActivity.RESULT_KEY);  //单选
+        if(path!=null){
+            pathList.add(path);
+        }
+
+        String[] paths = getIntent().getStringArrayExtra(PicGridViewMultiSelectActivity.RESULT_ARR_KEY);  //多选
+        if(paths != null && paths.length > 0){
             for(String p :paths){
                 pathList.add(p);
             }
-        }else{
-            pathList.add(path);         //单选
         }
 
         if(pathList == null || pathList.size() == 0){

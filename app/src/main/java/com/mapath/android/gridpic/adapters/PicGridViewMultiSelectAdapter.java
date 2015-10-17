@@ -40,7 +40,7 @@ public class PicGridViewMultiSelectAdapter extends PicGridViewAdapter {
         helper.setImageResource(R.id.id_item_select, R.drawable.picture_unselected);
         mImageView.setColorFilter(null);
 
-        mSelect.setVisibility(View.VISIBLE);
+        handleSelectFlag(helper,position);
 
         /**
          * 已经选择过的图片，Ø显示出选择过的效果
@@ -49,6 +49,11 @@ public class PicGridViewMultiSelectAdapter extends PicGridViewAdapter {
             mSelect.setImageResource(R.drawable.pictures_selected);
             mImageView.setColorFilter(Color.parseColor("#77000000"));
         }
+    }
+
+    protected void handleSelectFlag(ViewHolder helper,int position){
+        final ImageView mSelect = helper.getView(R.id.id_item_select);
+        mSelect.setVisibility(View.VISIBLE);
     }
 
     public boolean isContains(String path) {
@@ -72,7 +77,7 @@ public class PicGridViewMultiSelectAdapter extends PicGridViewAdapter {
         handTitleRight(titleRight);
     }
 
-    private void handTitleRight(TextView titleRight){
+    protected void handTitleRight(TextView titleRight){
         if(mSelectedImage.size()!=0){
             titleRight.setVisibility(View.VISIBLE);
             titleRight.setText("");
